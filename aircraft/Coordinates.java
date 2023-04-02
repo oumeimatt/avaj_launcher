@@ -1,4 +1,6 @@
-class Coordinates {
+package aircraft;
+
+public class Coordinates {
     private int longitude;
     private int latitude;
     private int height;

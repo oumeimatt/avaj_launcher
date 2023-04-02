@@ -1,7 +1,9 @@
+package aircraft;
 import java.util.ArrayList;
+import aircraft.WeatherTower;
+import aircraft.Flayable;
 
-
-class Tower extends WeatherTower {
+public class Tower extends WeatherTower {
     private ArrayList<Flayable> observers = new ArrayList<Flayable>;
     
     public void register(Flayable * p_flayable) {

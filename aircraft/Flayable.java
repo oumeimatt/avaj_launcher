@@ -1,5 +1,7 @@
+package aircraft;
+import aircraft.WeatherTower;
 
-abstract class Flayable {
+public abstract class Flayable {
     protected WeatherTower weatherTower;
     public abstract void updateConditions(){}
     public void registerTower(WeatherTower *p_tower){}
