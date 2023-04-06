@@ -5,6 +5,13 @@ public class Coordinates {
     private int latitude;
     private int height;
 
+    Coordinates(int longitude, int latitude, int height){
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.height = height;
+    }
+    void finalize(int p_longitude, int p_latitude, int p_height){}
+
     public int getLongitude(){
         return this.longitude;
     }
@@ -14,5 +21,4 @@ public class Coordinates {
     public int getHeight(){
         return this.height;
     }
-    void finalize(int p_longitude, int p_latitude, int p_height){}
 }

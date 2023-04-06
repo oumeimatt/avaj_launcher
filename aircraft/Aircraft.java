@@ -1,7 +1,8 @@
 package aircraft;
 import aircraft.Coordinates;
+import weather.Flayable;
 
-public class Aircraft {
+public class Aircraft extends Flayable {
     protected long id;
     protected String name;
     protected Coordinates coordinates; 
