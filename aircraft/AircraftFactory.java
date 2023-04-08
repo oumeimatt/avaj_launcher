@@ -1,7 +1,6 @@
 package aircraft;
 import aircraft.Coordinates;
 import weather.Flayable;
-import java.util.UUID;
 
 public class AircraftFactory{
     private static AircraftFactory(){}

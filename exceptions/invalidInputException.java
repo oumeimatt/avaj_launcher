@@ -1,7 +1,10 @@
 package exceptions;
 
-public class invalidInputException extends Exception {
-    invalidInputException(String message, Throwable th){
+public class InvalidInputException extends Exception {
+    public InvalidInputException(String message, Throwable th){
         super(message, th);
+    }
+    public InvalidInputException(String message){
+        super(message);
     }
 }

@@ -4,75 +4,66 @@ import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 import exceptions.FileException;
-// import java.util.Scanner;
-
-// import java.io.NumberFormatException;
+import exceptions.InvalidInputException;
+import java.util.ArrayList;
 
 public class simulation {
 
+    private static ArrayList<String> data = new ArrayList<String>();
+    // private static void simulator(int n)
 
-    class MyException extends Exception {
-        public MyException(String s){
-            super(s);
-        }
-    }
-    
-    static boolean validCoordinates(String[] coord){
+    private static boolean isInteger(String coordinate, boolean isHeight){
         try {
-            int longitude = Integer.parseInt(coord[2]);
-            int latitude = Integer.parseInt(coord[3]);
-            int height = Integer.parseInt(coord[4]);
-            if (longitude <= 0 || latitude <= 0 || height <= 0)
-                return false;
+            int coord = Integer.parseInt(coordinate);
+            if (coord < 0 || (isHeight == true && coord > 100))
+                throw new NumberFormatException("Invalid coordinates !");
         }
         catch(NumberFormatException e){
-            System.out.println("Invalid Coordinates!");
-            return (false);
+            System.out.println(e);
+            System.out.println(coordinate);
+            return false;
         }
         return true;
     }
 
-    static boolean isDataValid(String data[]){
-        if (data.length == 5){
-            if (!data[0].equals("Baloon") && !data[0].equals("JetPlane") 
-                && !data[0].equals("Helicopter"))
-                return false;
-            if (validCoordinates(data))
-                System.out.println("valid Coordinates :)");
-            else{
-                return false;
+    private static void validateInput(String line) throws InvalidInputException{
+            if (line != null && !line.equals("")){
+                String[] aircarftInfo = line.split(" ");
+                if ((aircarftInfo[0].equals("JetPlane") || aircarftInfo[0].equals("Baloon") 
+                    || aircarftInfo[0].equals("Helicopter")) && isInteger(aircarftInfo[2], false)
+                    && isInteger(aircarftInfo[3], false) && isInteger(aircarftInfo[4], true))
+                    data.add(line);
+                else
+                    throw new InvalidInputException("Invalid input");
             }
-        }
-        return true;
     }
-
 
     public static void main(String args[]){
         int n = 0;
-        // System.out.println(args[0]);
         BufferedReader reader;
         if (args.length == 1){
             try {
-
                 reader = new BufferedReader(new FileReader(args[0]));
                 String line = reader.readLine();
-                reader.close();
-                // File myObj = new File(args[0]);
-                // Scanner myReader = new Scanner(myObj);
-                // while(myReader.hasNextLine()){
-                //     String line = myReader.nextLine();
-                //     System.out.println(line);
-                //     String data[] = line.split(" ");
-                //     isDataValid(data);
-                // }
-                // myReader.close();
-            } catch (IOException e){
-                try {
-                    throw new FileException("PLease check File Name or path", e);
+                n = Integer.parseInt(line);
+                if (n <= 0)
+                    throw new InvalidInputException("Invalid input");
+                while (line != null){
+                    line = reader.readLine();
+                    validateInput(line);
                 }
-                catch (FileException e2){
-                    System.out.println("im in hehe");
+                System.out.println(data);
+                reader.close();
+            } catch (IOException | NumberFormatException | InvalidInputException e){
+                try {
+                    if (e.getMessage().startsWith(args[0]))
+                        throw new FileException("PLease check File Name or path", e);
+                    else
+                        throw new InvalidInputException("Invalid input", e);
+                }
+                catch (FileException | InvalidInputException e2){
                     System.out.println(e2.toString());
                 }
             }
