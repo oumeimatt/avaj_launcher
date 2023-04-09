@@ -1,8 +1,8 @@
-package weather;
+package interfaces;
 import weather.weatherTower;
 
-public abstract class Flayable {
+public interface Flayable {
     protected WeatherTower weatherTower;
     public abstract void updateConditions();
-    public void registerTower(WeatherTower p_tower){}
+    public void registerTower(WeatherTower p_tower);
 }
