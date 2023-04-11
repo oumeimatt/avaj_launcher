@@ -31,6 +31,7 @@ public abstract class Aircraft implements Flayable {
     }
     public abstract void updateConditions();
     
-    public void registerTower(WeatherTower weatherTower){}
+    public void registerTower(WeatherTower weatherTower){
+    }
 
 }

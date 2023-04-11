@@ -6,7 +6,7 @@ public class WeatherProvider {
     private WeatherProvider(){}
 
     public static String getCurrentWeather(Coordinates p_coordinates){
-        int n = (p_coordinates.getLongitude() + p_coordinates.getLatitude()) * p_coordinates.getHeight();
+        int n = p_coordinates.getLongitude() + p_coordinates.getLatitude() + p_coordinates.getHeight();
         return weather[n % 4]; 
     }
 }

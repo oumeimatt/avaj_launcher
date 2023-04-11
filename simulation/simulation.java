@@ -12,6 +12,7 @@ import interfaces.Flayable;
 import aircraft.AircraftFactory;
 import aircraft.Coordinates;
 import weather.Tower;
+import weather.WeatherTower;
 
 public class simulation {
 
@@ -22,14 +23,18 @@ public class simulation {
     private static void startSimulator()throws InvalidInputException{
         if (data.size() < 1)
             throw new InvalidInputException("Invalid input");
+        WeatherTower tower = new WeatherTower();
         for (String aircraft: data){
             String [] aircraftData = aircraft.split(" ");
             Coordinates coordinates = new Coordinates(Integer.parseInt(aircraftData[2]), Integer.parseInt(aircraftData[3]), Integer.parseInt(aircraftData[4]));
-            aircrafts.add(AircraftFactory.newAircraft(aircraftData[0], aircraftData[1], coordinates));
+            Flayable flayable = AircraftFactory.newAircraft(aircraftData[0], aircraftData[1], coordinates);
+            aircrafts.add(flayable);
+            flayable.registerTower(tower);
+            tower.register(flayable);
         }
-        Tower tower = new Tower();
-        for (Flayable aircraft: aircrafts){
-            tower.register(aircraft);
+        while (weatherChanges > 0){
+            tower.changeWeather();
+            weatherChanges--;
         }
 
     }
@@ -73,15 +78,15 @@ public class simulation {
     // }
 
     public static void main(String args[]){
-        int n = 0;
+        // int n = 0;
         BufferedReader reader;
         if (args.length == 1){
             try {
                 reader = new BufferedReader(new FileReader(args[0]));
                 String line = reader.readLine();
                 // getNofWeatherChanges(line);
-                n = Integer.parseInt(line);
-                if (n <= 0)
+                weatherChanges = Integer.parseInt(line);
+                if (weatherChanges <= 0)
                     throw new InvalidInputException("Invalid input");
                 while (line != null){
                     line = reader.readLine();

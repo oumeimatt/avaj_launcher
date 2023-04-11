@@ -14,15 +14,17 @@ public class Tower {
         System.out.println(") registered to weather tower.");
         this.observers.add(p_flayable);
     }
-    public void uregister(Flayable p_flayable) {
-        // System.out.print("Tower says: " + p_flayable.getType());
-        // System.out.print("#" + p_flayable.getName());
-        // System.out.print("(" + p_flayable.getId());
+    public void unregister(Flayable p_flayable) {
+        System.out.print("Tower says: " + p_flayable.getType());
+        System.out.print("#" + p_flayable.getName());
+        System.out.print("(" + p_flayable.getId());
         System.out.println(") unregistered from weather tower.");
         this.observers.remove(p_flayable);
     }
     protected void conditionChanged() {
         for (Flayable observer : observers){
+            if (observer.getHeight() <= 0)
+            System.out.println("observer name: " + observer.getName());
             observer.updateConditions();
         }
     }

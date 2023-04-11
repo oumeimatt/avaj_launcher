@@ -3,7 +3,9 @@ import aircraft.Coordinates;
 import weather.WeatherProvider;
 
 public class WeatherTower extends Tower{
+
     public String getWeather(Coordinates p_coordinates){
+        // return "SUN";
         return WeatherProvider.getCurrentWeather(p_coordinates);
     }
     public void changeWeather(){
