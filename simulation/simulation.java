@@ -8,19 +8,30 @@ import java.util.Scanner;
 import exceptions.FileException;
 import exceptions.InvalidInputException;
 import java.util.ArrayList;
+import interfaces.Flayable;
+import aircraft.AircraftFactory;
+import aircraft.Coordinates;
+import weather.Tower;
 
 public class simulation {
 
     private static ArrayList<String> data = new ArrayList<String>();
     private static int weatherChanges = 0;
-    private static ArrayList<
+    private static ArrayList<Flayable> aircrafts = new ArrayList<Flayable>();
 
     private static void startSimulator()throws InvalidInputException{
         if (data.size() < 1)
             throw new InvalidInputException("Invalid input");
         for (String aircraft: data){
-            System.out.println(aircraft);
+            String [] aircraftData = aircraft.split(" ");
+            Coordinates coordinates = new Coordinates(Integer.parseInt(aircraftData[2]), Integer.parseInt(aircraftData[3]), Integer.parseInt(aircraftData[4]));
+            aircrafts.add(AircraftFactory.newAircraft(aircraftData[0], aircraftData[1], coordinates));
         }
+        Tower tower = new Tower();
+        for (Flayable aircraft: aircrafts){
+            tower.register(aircraft);
+        }
+
     }
 
     private static boolean isValidCoordinate(String coordinate, boolean isHeight){
@@ -68,7 +79,7 @@ public class simulation {
             try {
                 reader = new BufferedReader(new FileReader(args[0]));
                 String line = reader.readLine();
-                getNofWeatherChanges(line);
+                // getNofWeatherChanges(line);
                 n = Integer.parseInt(line);
                 if (n <= 0)
                     throw new InvalidInputException("Invalid input");

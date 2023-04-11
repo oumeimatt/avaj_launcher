@@ -1,6 +1,7 @@
 package aircraft;
 import aircraft.Coordinates;
 import interfaces.Flayable;
+import weather.WeatherTower;
 
 public abstract class Aircraft implements Flayable {
     protected long id;
@@ -14,10 +15,22 @@ public abstract class Aircraft implements Flayable {
         this.id = p_id;
         this.name = p_name;
         this.coordinates = p_coordinates;
-        this.type = "default"
+        this.type = "default";
     }
 
+    public String getType(){
+        return this.type;
+    }
+
+    public long getId(){
+        return this.id;
+    }
+
+    public String getName(){
+        return this.name;
+    }
     public abstract void updateConditions();
-    public 
+    
+    public void registerTower(WeatherTower weatherTower){}
 
 }

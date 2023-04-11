@@ -5,15 +5,12 @@ public class Coordinates {
     private int latitude;
     private int height;
 
-    Coordinates(int longitude, int latitude, int height){
+    public Coordinates(int longitude, int latitude, int height){
         this.longitude = longitude;
         this.latitude = latitude;
         this.height = height;
     }
 
-    void updateCoordinates(int longitude, int latitude, int height){
-        
-    }
     void finalize(int p_longitude, int p_latitude, int p_height){}
 
     public int getLongitude(){
@@ -32,6 +29,7 @@ public class Coordinates {
         this.latitude = newLatitude;
     }
     public void setHeight(int newHeight){
-        this.height = newHeight;
+        if (this.height <= 100)
+            this.height = newHeight;
     }
 }
