@@ -12,7 +12,7 @@ public class JetPlane extends Aircraft{
     
     public void updateConditions(){
         String weather = this.weatherTower.getWeather(this.coordinates);
-        System.out.println("Jetplane weather == " + weather);
+        // System.out.println("Jetplane weather == " + weather);
         switch(weather){
             case "SUN":
                 System.out.print(this.type + "#");
@@ -43,7 +43,9 @@ public class JetPlane extends Aircraft{
                 System.out.println("My rotor is going to freeze!");
                 this.coordinates.setHeight(this.coordinates.getHeight() - 7);
         }
+
     }
+
 
     public void registerTower(WeatherTower weatherTower){
         this.weatherTower = weatherTower;

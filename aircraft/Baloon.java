@@ -11,7 +11,7 @@ public class Baloon extends Aircraft {
     }
     public void updateConditions(){
         String weather = this.weatherTower.getWeather(this.coordinates);
-        System.out.println("Baloon weather == " + weather);
+        // System.out.println("Baloon weather == " + weather);
         switch(weather){
             case "SUN":
                 System.out.print(this.type + "#");
@@ -41,7 +41,9 @@ public class Baloon extends Aircraft {
                 System.out.print(this.id + ")");                
                 System.out.println("My rotor is going to freeze!");
                 this.coordinates.setHeight(this.coordinates.getHeight() - 15);
+        }
     }
+
     public void registerTower(WeatherTower weatherTower){
         this.weatherTower = weatherTower;
 

@@ -34,6 +34,7 @@ public class simulation {
         }
         while (weatherChanges > 0){
             tower.changeWeather();
+            System.out.println(weatherChanges);
             weatherChanges--;
         }
 

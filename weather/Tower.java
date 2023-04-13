@@ -2,6 +2,8 @@ package weather;
 import java.util.ArrayList;
 import weather.WeatherTower;
 import interfaces.Flayable;
+import java.util.Iterator;
+
 
 public class Tower {
     private ArrayList<Flayable> observers = new ArrayList<Flayable>();
@@ -20,12 +22,19 @@ public class Tower {
         System.out.print("(" + p_flayable.getId());
         System.out.println(") unregistered from weather tower.");
         this.observers.remove(p_flayable);
+        // System.out.println(" removed ");
     }
     protected void conditionChanged() {
-        for (Flayable observer : observers){
-            if (observer.getHeight() <= 0)
-            System.out.println("observer name: " + observer.getName());
-            observer.updateConditions();
+        for (int i = 0; i < observers.size(); i++)
+        {
+            observers.get(i).updateConditions();
+            if (observers.get(i).isLanding()){
+                System.out.print(observers.get(i).getType() + "#");
+                System.out.print(observers.get(i).getName() + "(");
+                System.out.println(observers.get(i).getId() + ") landing.");
+                this.unregister(observers.get(i));
+                i--;
+            }
         }
     }
 }

@@ -7,5 +7,6 @@ public interface Flayable {
     public void registerTower(WeatherTower p_tower);
     public String getType();
     public long getId();
-    public String getName(); 
+    public String getName();
+    public boolean isLanding();
 }

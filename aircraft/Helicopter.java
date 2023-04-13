@@ -12,7 +12,7 @@ public class Helicopter extends Aircraft{
     }
     public void updateConditions(){
         String weather = this.weatherTower.getWeather(this.coordinates);
-        System.out.println("Helicopeter weather == " + weather);
+        // System.out.println("Helicopeter weather == " + weather);
         // String weather = "SUN";
         switch(weather){
             case "SUN":

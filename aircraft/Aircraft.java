@@ -34,4 +34,10 @@ public abstract class Aircraft implements Flayable {
     public void registerTower(WeatherTower weatherTower){
     }
 
+    public boolean isLanding(){
+        if (this.coordinates.getHeight() <= 0)
+            return true;
+        return false;
+    }
+
 }
