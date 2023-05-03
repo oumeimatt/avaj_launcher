@@ -1,5 +1,5 @@
-package interfaces;
-import weather.WeatherTower;
+package launcher.aircraft;
+import launcher.WeatherTower;
 
 public interface Flayable {
     // protected WeatherTower weatherTower;

@@ -1,5 +1,5 @@
-package weather;
-import aircraft.Coordinates;
+package launcher;
+import launcher.Coordinates;
 
 public class WeatherProvider {
     private static String[] weather = new String[]{"RAIN","FOG","SUN","SNOW"};

@@ -1,7 +1,10 @@
-package aircraft;
-import aircraft.Coordinates;
-import interfaces.Flayable;
-import weather.WeatherTower;
+package launcher.aircraft;
+import launcher.Coordinates;
+import launcher.aircraft.Flayable;
+import launcher.WeatherTower;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public abstract class Aircraft implements Flayable {
     protected long id;
@@ -38,6 +41,21 @@ public abstract class Aircraft implements Flayable {
         if (this.coordinates.getHeight() <= 0)
             return true;
         return false;
+    }
+
+    void registerMessage(String Message){
+        BufferedWriter out = null;
+        try {
+            FileWriter fstream = new FileWriter("simulation.txt", true);
+            out = new BufferedWriter(fstream);
+            out.write(Message);
+            if(out != null)
+                out.close();
+        }
+        catch (IOException e) {
+            System.err.println("Simulation file error: " + e.getMessage());
+            System.exit(0);
+        }
     }
 
 }

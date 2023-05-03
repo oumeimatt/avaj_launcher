@@ -1,6 +1,6 @@
-package weather;
-import aircraft.Coordinates;
-import weather.WeatherProvider;
+package launcher;
+import launcher.Coordinates;
+import launcher.WeatherProvider;
 
 public class WeatherTower extends Tower{
 

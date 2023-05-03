@@ -1,4 +1,4 @@
-package exceptions;
+package launcher.exceptions;
 
 public class InvalidInputException extends Exception {
     public InvalidInputException(String message, Throwable th){

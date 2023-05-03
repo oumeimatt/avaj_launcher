@@ -1,6 +1,6 @@
-package aircraft;
-import aircraft.Coordinates;
-import interfaces.Flayable;
+package launcher.aircraft;
+import launcher.Coordinates;
+import launcher.aircraft.Flayable;
 
 public class AircraftFactory{
     private AircraftFactory(){}
