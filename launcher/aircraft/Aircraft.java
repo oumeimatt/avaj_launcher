@@ -38,8 +38,9 @@ public abstract class Aircraft implements Flayable {
     }
 
     public boolean isLanding(){
-        if (this.coordinates.getHeight() <= 0)
+        if (this.coordinates.getHeight() == 0){
             return true;
+        }
         return false;
     }
 

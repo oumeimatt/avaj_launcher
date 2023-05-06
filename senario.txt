@@ -1,13 +1,13 @@
 25
 Baloon B1 55 36 5
-Baloon B2 81 80 66
-JetPlane J1 23 44 32
-Helicopter H1 654 33 29
-Helicopter H2 22 33 44
-Helicopter H3 98 68 99
-Baloon B3 102 22 94
-JetPlane J2 111 99 68
-Helicopter H4 223 23 54
+Baloon B2 81 80 6
+JetPlane J1 23 44 12
+Helicopter H1 654 33 15
+Helicopter H2 22 33 49
+Helicopter H3 98 68 97
+Baloon B3 102 22 9
+JetPlane J2 111 99 6
+Helicopter H4 223 23 5
 
 
 

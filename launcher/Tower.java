@@ -11,6 +11,7 @@ public class Tower {
     private ArrayList<Flayable> observers = new ArrayList<Flayable>();
     
     public Tower(){}
+
     public void register(Flayable p_flayable){
         BufferedWriter out = null;
         try {

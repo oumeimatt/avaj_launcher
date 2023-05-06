@@ -29,7 +29,10 @@ public class Coordinates {
         this.latitude = newLatitude;
     }
     public void setHeight(int newHeight){
-        if (this.height <= 100)
+        if (newHeight <= 0)
+            this.height = 0;
+        if (newHeight <= 100 && newHeight > 0)
             this.height = newHeight;
+        System.out.println(this.height + " : height");
     }
 }
