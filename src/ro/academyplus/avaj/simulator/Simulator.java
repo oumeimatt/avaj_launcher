@@ -1,4 +1,4 @@
-package launcher.simulator;
+package src.ro.academyplus.avaj.simulator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
@@ -8,18 +8,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import launcher.exceptions.FileException;
-import launcher.exceptions.InvalidInputException;
-import launcher.aircraft.Flayable;
-import launcher.aircraft.AircraftFactory;
-import launcher.Coordinates;
-import launcher.WeatherTower;
+import src.ro.academyplus.avaj.exceptions.FileException;
+import src.ro.academyplus.avaj.exceptions.InvalidInputException;
+import src.ro.academyplus.avaj.simulator.aircrafts.Flayable;
+import src.ro.academyplus.avaj.simulator.aircrafts.AircraftFactory;
+import src.ro.academyplus.avaj.simulator.Coordinates;
+import src.ro.academyplus.avaj.weather.WeatherTower;
 
-public class simulation {
+public class Simulator {
 
     private static ArrayList<String> data = new ArrayList<String>();
-    private static int weatherChanges = 0;
     private static ArrayList<Flayable> aircrafts = new ArrayList<Flayable>();
+    private static WeatherTower weatherTower;
+    private static int simulations = 0;
 
     private static void registerSimulation(){
         BufferedWriter out = null;
@@ -35,10 +36,10 @@ public class simulation {
     }
 
     private static void startSimulator()throws InvalidInputException{
+        weatherTower = new WeatherTower();
         if (data.size() < 1)
             throw new InvalidInputException("Invalid input! please add an aircraft to senario file !");
         registerSimulation();
-        WeatherTower tower = new WeatherTower();
         for (String aircraft: data){
             String [] aircraftData = aircraft.split(" ");
             Coordinates coordinates = 
@@ -48,12 +49,11 @@ public class simulation {
             Flayable flayable = 
                 AircraftFactory.newAircraft(aircraftData[0], aircraftData[1], coordinates);
             aircrafts.add(flayable);
-            flayable.registerTower(tower);
-            tower.register(flayable);
+            flayable.registerTower(weatherTower);
+            // tower.register(flayable);
         }
-        while (weatherChanges > 0){
-            tower.changeWeather();
-            weatherChanges--;
+        for (; simulations > 0; simulations--){
+            weatherTower.changeWeather();
         }
 
     }
@@ -82,10 +82,10 @@ public class simulation {
         }
     }
 
-    private static void getWeatherChanges(String line) throws NumberFormatException{
+    private static void getSimulations(String line) throws NumberFormatException{
         try {
-            weatherChanges = Integer.parseInt(line);
-            if (weatherChanges <= 0)
+            simulations = Integer.parseInt(line);
+            if (simulations <= 0)
                 throw new NumberFormatException("Invalid input. The number of times the weather will change should be a positive integer number!");
 
         }
@@ -100,7 +100,7 @@ public class simulation {
             try {
                 reader = new BufferedReader(new FileReader(args[0]));
                 String line = reader.readLine();
-                getWeatherChanges(line);
+                getSimulations(line);
                 while (line != null){
                     line = reader.readLine();
                     validateInput(line);

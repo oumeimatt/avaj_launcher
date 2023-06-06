@@ -1,5 +1,5 @@
-package launcher;
-import launcher.Coordinates;
+package src.ro.academyplus.avaj.weather;
+import src.ro.academyplus.avaj.simulator.Coordinates;
 
 public class WeatherProvider {
     private static String[] weather = new String[]{"RAIN","FOG","SUN","SNOW"};

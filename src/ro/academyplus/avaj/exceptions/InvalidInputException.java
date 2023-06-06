@@ -1,4 +1,4 @@
-package launcher.exceptions;
+package src.ro.academyplus.avaj.exceptions;
 
 public class InvalidInputException extends Exception {
     public InvalidInputException(String message, Throwable th){

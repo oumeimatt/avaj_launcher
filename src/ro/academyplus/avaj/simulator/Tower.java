@@ -1,7 +1,7 @@
-package launcher;
+package src.ro.academyplus.avaj.simulator;
+import src.ro.academyplus.avaj.weather.WeatherTower;
+import src.ro.academyplus.avaj.simulator.aircrafts.Flayable;
 import java.util.ArrayList;
-import launcher.WeatherTower;
-import launcher.aircraft.Flayable;
 import java.util.Iterator;
 import java.io.BufferedWriter;
 import java.io.FileWriter;

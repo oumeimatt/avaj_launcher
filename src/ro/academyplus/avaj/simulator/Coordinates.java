@@ -1,4 +1,4 @@
-package launcher;
+package src.ro.academyplus.avaj.simulator;
 
 public class Coordinates {
     private int longitude;

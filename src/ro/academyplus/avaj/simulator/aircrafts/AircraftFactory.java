@@ -1,6 +1,6 @@
-package launcher.aircraft;
-import launcher.Coordinates;
-import launcher.aircraft.Flayable;
+package src.ro.academyplus.avaj.simulator.aircrafts;
+import src.ro.academyplus.avaj.simulator.Coordinates;
+import src.ro.academyplus.avaj.simulator.aircrafts.Flayable;
 
 public class AircraftFactory{
     private AircraftFactory(){}

@@ -1,7 +1,7 @@
-package launcher.aircraft;
-import launcher.aircraft.Aircraft;
-import launcher.Coordinates;
-import launcher.WeatherTower;
+package src.ro.academyplus.avaj.simulator.aircrafts;
+import src.ro.academyplus.avaj.simulator.Coordinates;
+import src.ro.academyplus.avaj.simulator.aircrafts.Aircraft;
+import src.ro.academyplus.avaj.weather.WeatherTower;
 
 
 public class Helicopter extends Aircraft{

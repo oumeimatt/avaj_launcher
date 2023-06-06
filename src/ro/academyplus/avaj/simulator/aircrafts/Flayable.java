@@ -1,5 +1,5 @@
-package launcher.aircraft;
-import launcher.WeatherTower;
+package src.ro.academyplus.avaj.simulator.aircrafts;
+import src.ro.academyplus.avaj.weather.WeatherTower;
 
 public interface Flayable {
     // protected WeatherTower weatherTower;

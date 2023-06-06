@@ -1,7 +1,7 @@
-package launcher.aircraft;
-import launcher.Coordinates;
-import launcher.aircraft.Flayable;
-import launcher.WeatherTower;
+package src.ro.academyplus.avaj.simulator.aircrafts;
+import src.ro.academyplus.avaj.simulator.Coordinates;
+import src.ro.academyplus.avaj.simulator.aircrafts.Flayable;
+import src.ro.academyplus.avaj.weather.WeatherTower;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;

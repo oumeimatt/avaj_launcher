@@ -1,6 +1,7 @@
-package launcher;
-import launcher.Coordinates;
-import launcher.WeatherProvider;
+package src.ro.academyplus.avaj.weather;
+import src.ro.academyplus.avaj.simulator.Coordinates;
+import src.ro.academyplus.avaj.weather.WeatherProvider;
+import src.ro.academyplus.avaj.simulator.Tower;
 
 public class WeatherTower extends Tower{
 
