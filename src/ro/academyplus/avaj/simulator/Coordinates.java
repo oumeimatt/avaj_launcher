@@ -33,6 +33,5 @@ public class Coordinates {
             this.height = 0;
         if (newHeight <= 100 && newHeight > 0)
             this.height = newHeight;
-        System.out.println(this.height + " : height");
     }
 }
