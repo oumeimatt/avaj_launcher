@@ -27,7 +27,7 @@ public class Simulator {
             if(out != null)
                 out.close();
         }
-        catch (IOException e) {
+        catch (IOException e){
             System.err.println("Error: " + e.getMessage());
             System.exit(0);
         }
@@ -35,6 +35,7 @@ public class Simulator {
 
     private static void startSimulator()throws InvalidInputException{
         weatherTower = new WeatherTower();
+        AircraftFactory aircraftFactory = AircraftFactory.getInstance();
         if (data.size() < 1)
             throw new InvalidInputException("Invalid input! please add an aircraft to senario file !");
         generateSimulation();
@@ -45,10 +46,9 @@ public class Simulator {
                                 Integer.parseInt(aircraftData[3]),
                                 Integer.parseInt(aircraftData[4]));
             Flayable flayable = 
-                AircraftFactory.newAircraft(aircraftData[0], aircraftData[1], coordinates);
+                aircraftFactory.newAircraft(aircraftData[0], aircraftData[1], coordinates);
             aircrafts.add(flayable);
             flayable.registerTower(weatherTower);
-            weatherTower.register(flayable);
         }
         for (; simulations > 0; simulations--){
             weatherTower.changeWeather();
@@ -100,7 +100,7 @@ public class Simulator {
 
         }
         catch (NumberFormatException e){
-            throw new NumberFormatException("Line 1: Invalid input! The numer of simulations should be a positive integer number!");
+            throw new NumberFormatException("Line 1: Invalid input! The numer of simulations should be a positive integer!");
         }
     }
 

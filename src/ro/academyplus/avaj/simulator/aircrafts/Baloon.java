@@ -14,23 +14,23 @@ public class Baloon extends Aircraft {
         String Message = "";
         switch(weather){
             case "SUN":
-                Message = this.type + "#" + this.name + "(" + this.id + "): This is hot.\n";
+                Message = this.type + "#" + this.name + "(" + this.id + "): Lets enjoy the good weather and take some pictures.\n";
                 this.coordinates.setLongitude(this.coordinates.getLongitude() + 2);
                 this.coordinates.setHeight(this.coordinates.getHeight() + 4);
                 break;
             case "RAIN":
                 Message = this.type + "#" + this.name + "(" + this.id 
-                    + "): It's raining. Better watch out for lightings.\n";
+                    + "): Damn you rain! You messed up my baloon!.\n";
                 this.coordinates.setHeight(this.coordinates.getHeight() - 5);
                 break;
             case "FOG":
                 Message = this.type + "#" + this.name + "(" + this.id 
-                    + "): Let's enjoy the good weather and take some pics.\n";
+                    + "): Im lost in the mist!.\n";
                 this.coordinates.setHeight(this.coordinates.getHeight() - 3);
                 break;
             case "SNOW":
                 Message = this.type + "#" + this.name + "(" + this.id 
-                    + "):  My rotor is going to freeze !\n";
+                    + "):  It's snowing.  We're gonna crash! !\n";
                 this.coordinates.setHeight(this.coordinates.getHeight() - 15);
         }
         registerMessage(Message);
@@ -38,7 +38,7 @@ public class Baloon extends Aircraft {
 
     public void registerTower(WeatherTower weatherTower){
         this.weatherTower = weatherTower;
-
+        this.weatherTower.register(this);
     }
 
 }

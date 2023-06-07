@@ -34,8 +34,7 @@ public abstract class Aircraft implements Flayable {
     }
     public abstract void updateConditions();
     
-    public void registerTower(WeatherTower weatherTower){
-    }
+    public void registerTower(WeatherTower weatherTower){}
 
     public boolean isLanding(){
         if (this.coordinates.getHeight() == 0){
@@ -44,7 +43,7 @@ public abstract class Aircraft implements Flayable {
         return false;
     }
 
-    void registerMessage(String Message){
+    protected void registerMessage(String Message){
         BufferedWriter out = null;
         try {
             FileWriter fstream = new FileWriter("simulation.txt", true);
@@ -58,5 +57,4 @@ public abstract class Aircraft implements Flayable {
             System.exit(0);
         }
     }
-
 }

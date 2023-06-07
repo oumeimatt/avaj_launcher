@@ -15,7 +15,7 @@ public class JetPlane extends Aircraft{
         String Message = "";
         switch(weather){
             case "SUN":
-                Message = this.type + "#" + this.name + "(" + this.id + "): This is hot.\n";
+                Message = this.type + "#" + this.name + "(" + this.id + "): The weather is wonderful! I love the sun.\n";
                 this.coordinates.setLatitude(this.coordinates.getLatitude() + 10);
                 this.coordinates.setHeight(this.coordinates.getHeight() + 2);
                 break;
@@ -26,12 +26,12 @@ public class JetPlane extends Aircraft{
                 break;
             case "FOG":
                 Message = this.type + "#" + this.name + "(" + this.id 
-                    + "): Let's enjoy the good weather and take some pics.\n";
+                    + "): The fog is killing me. Request permission to land.\n";
                 this.coordinates.setLatitude(this.coordinates.getLatitude() + 1);
                 break;
             case "SNOW":
                 Message = this.type + "#" + this.name + "(" + this.id 
-                    + "):  My rotor is going to freeze !\n";                
+                    + "):  OMG! Winter is coming! !\n";                
                 this.coordinates.setHeight(this.coordinates.getHeight() - 7);
         }
         registerMessage(Message);
@@ -40,6 +40,7 @@ public class JetPlane extends Aircraft{
 
     public void registerTower(WeatherTower weatherTower){
         this.weatherTower = weatherTower;
+        this.weatherTower.register(this);
     }
 
 }

@@ -22,12 +22,12 @@ public class Helicopter extends Aircraft{
                 break;
             case "RAIN":
                 Message = this.type + "#" + this.name + "(" + this.id 
-                    + "): It's raining. Better watch out for lightings.\n";
+                    + "):Damn! It's raining. i forgot my umbrella xD .\n";
                 this.coordinates.setLongitude(this.coordinates.getLongitude() + 5);
                 break;
             case "FOG":
                 Message = this.type + "#" + this.name + "(" + this.id 
-                    + "): Let's enjoy the good weather and take some pics.\n";
+                    + "): MY EYEESS!! MY EYEEESS!! this fog is going to kill me.\n";
                 this.coordinates.setLongitude(this.coordinates.getLongitude() + 1);
                 break;
             case "SNOW":
@@ -41,7 +41,7 @@ public class Helicopter extends Aircraft{
 
     public void registerTower(WeatherTower weatherTower){
         this.weatherTower = weatherTower;
-
+        this.weatherTower.register(this);
     }
 
 }

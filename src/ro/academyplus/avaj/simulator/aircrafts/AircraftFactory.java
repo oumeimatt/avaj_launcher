@@ -3,8 +3,19 @@ import src.ro.academyplus.avaj.simulator.Coordinates;
 import src.ro.academyplus.avaj.simulator.aircrafts.Flayable;
 
 public class AircraftFactory{
-    private AircraftFactory(){}
     private static int aircraftId = 0;
+    
+    public static AircraftFactory instance = null;
+    
+    private AircraftFactory(){}
+
+    public static synchronized AircraftFactory getInstance(){
+        if (instance == null){
+            instance = new AircraftFactory();
+        }
+        return instance;
+    }
+    
     public static Flayable newAircraft(String p_type, String p_name, Coordinates p_coordinates){
         aircraftId++;
         switch (p_type) {

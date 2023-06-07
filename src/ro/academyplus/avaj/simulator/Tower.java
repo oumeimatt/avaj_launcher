@@ -28,6 +28,7 @@ public class Tower {
         }
         this.observers.add(p_flayable);
     }
+
     public void unregister(Flayable p_flayable) {
         BufferedWriter out = null;
         try {
@@ -47,6 +48,7 @@ public class Tower {
         }
         this.observers.remove(p_flayable);
     }
+
     protected void conditionChanged() {
         for (int i = 0; i < observers.size(); i++)
         {
