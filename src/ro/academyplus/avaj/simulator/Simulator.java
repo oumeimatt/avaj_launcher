@@ -6,8 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import src.ro.academyplus.avaj.exceptions.FileException;
-import src.ro.academyplus.avaj.exceptions.InvalidInputException;
+import src.ro.academyplus.avaj.simulator.MyException;
 import src.ro.academyplus.avaj.simulator.aircrafts.Flayable;
 import src.ro.academyplus.avaj.simulator.aircrafts.AircraftFactory;
 import src.ro.academyplus.avaj.simulator.Coordinates;
@@ -33,11 +32,11 @@ public class Simulator {
         }
     }
 
-    private static void startSimulator()throws InvalidInputException{
+    private static void startSimulator()throws MyException{
         weatherTower = new WeatherTower();
         AircraftFactory aircraftFactory = AircraftFactory.getInstance();
         if (data.size() < 1)
-            throw new InvalidInputException("Invalid input! please add an aircraft to senario file !");
+            throw new MyException("Invalid input! please add an aircraft to senario file !");
         generateSimulation();
         for (String aircraft: data){
             String [] aircraftData = aircraft.split(" ");
@@ -68,24 +67,28 @@ public class Simulator {
         return true;
     }
 
-    private static void validateInput(String line, int lineNumber) throws InvalidInputException{
+    private static void validateInput(String line, int lineNumber) throws MyException{
         if (line != null && !line.equals("")){
             String error;
             String[] aircarftInfo = line.split(" ");
-            if (!aircarftInfo[0].equals("JetPlane") && !aircarftInfo[0].equals("Baloon") 
+            if (aircarftInfo.length != 5){
+                error = "Line " + lineNumber + " is Invalid! ( example of a valid line: TYPE NAME LONGITUDE LATITUDE HEIGHT)";
+                throw new MyException(error);
+            }
+            else if (!aircarftInfo[0].equals("JetPlane") && !aircarftInfo[0].equals("Baloon") 
                 && !aircarftInfo[0].equals("Helicopter")){
                     error = "Line " + lineNumber + " :Invalid aircraft type!";
-                    throw new InvalidInputException(error);
-                }
+                    throw new MyException(error);
+            }
             else if (!isValidCoordinate(aircarftInfo[2], false)
                 || !isValidCoordinate(aircarftInfo[3], false)){
                     error = "Line " + lineNumber + " :Invalid aircraft coordinates!";
-                    throw new InvalidInputException(error);
-                }
+                    throw new MyException(error);
+            }
 
             else if (!isValidCoordinate(aircarftInfo[4], true)){
                 error = "Line " + lineNumber + " :Invalid aircraft height!";
-                throw new InvalidInputException(error);
+                throw new MyException(error);
             }
             else
                 data.add(line);
@@ -119,16 +122,16 @@ public class Simulator {
                 }
                 startSimulator();
                 reader.close();
-            } catch (IOException | NumberFormatException | InvalidInputException e){
+            } catch (IOException | NumberFormatException | MyException e){
                 try {
                     if (e.getMessage().startsWith(args[0])){
                         System.out.print(args[0]+ " : ");
-                        throw new FileException("No such file !", e);
+                        throw new MyException("No such file !", e);
                     }
                     else
-                        throw new InvalidInputException(e.getMessage(), e);
+                        throw new MyException(e.getMessage(), e);
                 }
-                catch (FileException | InvalidInputException e2){
+                catch (MyException e2){
                     System.out.println(e2.getMessage());
                 }
             }
